@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ave Desafortunada</title>
 
+    <link href="style.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
@@ -237,9 +239,13 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     return fig
 
     </py-script>
-    <div id="grafica" style="width:800px; margin:0 auto;"></div>
-    <div id="code" >
-        <py-repl>
+    <div class="contenedor">
+
+    
+        <div id="grafica" style="width:800px; margin:0 auto;" ></div>
+        <div class="code" >
+            <div>
+                <py-repl>
 z=5     #Grado de aceleración del limpiavidrios
 a=0.3   #Radio de gordura del ave
 g=9.81
@@ -253,13 +259,26 @@ ti=0    #tiempo inicial
 tf=1.1  #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
-        </py-repl>
-        <py-repl output="grafica">
+                </py-repl>
+            </div>
+            <div>
+                <py-repl output="grafica">
 fig = runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0)
 fig
-        </py-repl>
+                </py-repl>
+                
+            </div>
+        </div>
+        
+        <div class="repo">
+            <div class="imagen">
+                <img src="repo.jpeg">
+            </div>
+            <div class="boton">
+                <a class="fcc-btn" href="https://github.com/FernandoBriceno/LagrangianAndHamiltonianFormulation">Ir al Repo</a>
+            </div>
+            
+        </div>
     </div>
-    
- 
 </body>
 </html>

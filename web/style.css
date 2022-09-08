@@ -1,0 +1,54 @@
+
+
+/*Centers "button" in the middle of the page*/
+body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.contenedor {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+.repo {
+    width: 10%;
+    align-items: center;
+    justify-content: center;
+    margin:0 auto;
+  }
+.imagen{
+    width:100%;
+    margin:0 auto;
+    padding-bottom: 15%;
+  }
+.boton{
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding-bottom: 50%;
+  }
+  
+.code {
+    width: 100%;
+    float:left;
+    padding-bottom: 5%;
+  }
+
+
+.fcc-btn {
+    background-color: #199319;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    margin-right: auto;
+    margin-left: auto;
+    
+  }
+  
+.fcc-btn:hover {
+    background-color: #223094;
+  }
+  
