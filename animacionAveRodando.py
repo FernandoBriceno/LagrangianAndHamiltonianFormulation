@@ -149,12 +149,21 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     fig = plt.figure()
     ax=fig.gca()
 
+
     def recta(i): #pinta el limpia parabrisas
-        l=3
+        l=L
         th=angulo(z,t[i])
         x=[0,l*np.cos(th)]
         y=[0,l*np.sin(th)]
-        plt.plot(x,y, 'g')
+        plt.plot(x,y, 'k')
+
+    def recta2(i): #pinta el limpia parabrisas largo punteado
+        l=2*L
+        th=angulo(z,t[i])
+        x=[-l*np.cos(th),l*np.cos(th)]
+        y=[-l*np.sin(th),l*np.sin(th)]
+        plt.plot(x,y, 'y--')
+
     def rectaVelx(i): #vector velocidad en x
         velx1=[x[i],x[i]+(vx[i-1]/10)]
         velx2=[y[i],y[i]]
@@ -189,7 +198,9 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
 
         ventana(L)
         velocidades(i)
+        recta2(i)
         recta(i)
+        
 
         #plot trayectorias centro de masa
         plt.plot(x2[:i+1],y2[:i+1], 'b')
@@ -202,8 +213,12 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
         
 
         #plot las masas
+
         plt.plot(x[i],y[i], 'mo',markersize=20) #plt si sigue fija
         plt.plot(x2[i],y2[i], 'mo',markersize=20) #plt si se suelta enalgún momento
+
+        plt.plot(xc2[i],yc2[i], 'bo',markersize=5) #la cabeza del ave si se suelta
+        plt.plot(xc[i],yc[i], 'ro',markersize=5) #la cabeza del ave si no se suelta
         
         plt.title(str(round(t[i],3))+" [s]") #tiempo en segundos
         
