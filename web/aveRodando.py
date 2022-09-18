@@ -7,26 +7,26 @@ a=0.3   #Radio de gordura del ave
 g=9.81
 M=0.2   #Masa del limpiavidrios
 m=0.3   #Masa del ave
-L=4    #Longitud del limpiavidrios
+L=3     #Longitud del limpiavidrios
 A0=0    #Ángulo inicial
 tlim = np.pi/(2*z)  #El tiempo en el que la velocidad angular comienza a disminuir
-h=0.05 #El paso del tiempo
+h=0.001 #El paso del tiempo
 ti=0    #tiempo inicial
 tf=1.1  #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
 
+def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0,steep):
 
-def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     def angulo(z,t):
-        return (np.pi/4)*(1-np.cos(z*t)) + A0
+        return (np.pi/4)*(1-np.cos(z*t)) #+ A0
     def W(z,t):
         return (np.pi/4)*np.sin(z*t)
     def vx_vy(t,R,Rp,w,A):
         vx=Rp*np.cos(A)-R*np.sin(A)*w-a*np.cos(A)*w
         vy=Rp*np.sin(A)+R*np.cos(A)*w-a*np.sin(A)*w
         return vx, vy    
-    def valoresI(t0,R,Rp,th,z):#No SE USA
+    def valoresI(t0,R,Rp,th,z): #No SE USA
         w=W(z,t0)
         v0x,v0y = vx_vy(t0,R,Rp,z)
         x0=R*np.cos(th)-a*np.sin(th)#x[]
@@ -150,11 +150,19 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     ax=fig.gca()
 
     def recta(i): #pinta el limpia parabrisas
-        l=3
+        l=L
         th=angulo(z,t[i])
         x=[0,l*np.cos(th)]
         y=[0,l*np.sin(th)]
-        plt.plot(x,y, 'g')
+        plt.plot(x,y, 'k')
+
+    def recta2(i): #pinta el limpia parabrisas largo punteado
+        l=2*L
+        th=angulo(z,t[i])
+        x=[-l*np.cos(th),l*np.cos(th)]
+        y=[-l*np.sin(th),l*np.sin(th)]
+        plt.plot(x,y, 'y--')
+
     def rectaVelx(i): #vector velocidad en x
         velx1=[x[i],x[i]+(vx[i-1]/10)]
         velx2=[y[i],y[i]]
@@ -189,7 +197,9 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
 
         ventana(L)
         velocidades(i)
+        recta2(i)
         recta(i)
+        
 
         #plot trayectorias centro de masa
         plt.plot(x2[:i+1],y2[:i+1], 'b')
@@ -202,8 +212,12 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
         
 
         #plot las masas
+
         plt.plot(x[i],y[i], 'mo',markersize=20) #plt si sigue fija
         plt.plot(x2[i],y2[i], 'mo',markersize=20) #plt si se suelta enalgún momento
+
+        plt.plot(xc2[i],yc2[i], 'bo',markersize=5) #la cabeza del ave si se suelta
+        plt.plot(xc[i],yc[i], 'ro',markersize=5) #la cabeza del ave si no se suelta
         
         plt.title(str(round(t[i],3))+" [s]") #tiempo en segundos
         
@@ -211,9 +225,11 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
         lim=5
         plt.xlim(-8,L+1)
         plt.ylim(-4,L+1)
-    ani = animation.FuncAnimation(fig, actualizar, range(len(t)))
-    fig
-    plt.show()
+    #ani = animation.FuncAnimation(fig, actualizar, range(len(t)))
+    actualizar(len(t[:steep])-1)
+    return plt
 
-runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0)
-
+fig1 = runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0,10).
+fig2= runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0,20)
+fig3= runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0,20)
+fig2.show()
