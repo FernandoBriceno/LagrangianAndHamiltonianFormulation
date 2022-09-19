@@ -269,7 +269,7 @@ runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0)
     <div class="contenedor">
         
         <div class="code" >
-            <py-repl>
+            <py-repl output="grafica">
 z=3     #Grado de aceleración del limpiavidrios
 a=0.3   #Radio de gordura del ave
 g=9.81
@@ -283,15 +283,14 @@ ti=0    #tiempo inicial
 tf=1.5  #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
+
+runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0)
             </py-repl>
             
         <div>
-            <py-repl output="grafica">
-runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0)
-            </py-repl>
-                
+    </div>
         </div>
-        </div>
+
         <div class="gca-video">
             <div>
                 <video   autoplay muted loop width="320" height="240" >
