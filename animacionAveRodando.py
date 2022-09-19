@@ -10,9 +10,9 @@ m=0.3   #Masa del ave
 L=4    #Longitud del limpiavidrios
 A0=0    #Ángulo inicial
 tlim = np.pi/(2*z)  #El tiempo en el que la velocidad angular comienza a disminuir
-h=0.05 #El paso del tiempo
+h=0.005 #El paso del tiempo
 ti=0    #tiempo inicial
-tf=1.1  #tiempo final
+tf=1.5  #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
 
