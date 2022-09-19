@@ -2,17 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-z=5     #Grado de aceleración del limpiavidrios
+z=3  #Grado de aceleración del limpiavidrios
 a=0.3   #Radio de gordura del ave
-g=9.81
+g=10
 M=0.2   #Masa del limpiavidrios
 m=0.3   #Masa del ave
 L=4    #Longitud del limpiavidrios
 A0=0    #Ángulo inicial
 tlim = np.pi/(2*z)  #El tiempo en el que la velocidad angular comienza a disminuir
-h=0.005 #El paso del tiempo
+h=0.01 #El paso del tiempo
 ti=0    #tiempo inicial
-tf=1.5  #tiempo final
+tf=5  #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
 
@@ -21,7 +21,9 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     def angulo(z,t):
         return (np.pi/4)*(1-np.cos(z*t)) + A0
     def W(z,t):
-        return (np.pi/4)*np.sin(z*t)
+        return (np.pi/4)*np.sin(z*t)*z
+    def ALFA(z,t):
+        return (np.pi/4)*np.cos(z*t)*z*z
     def vx_vy(t,R,Rp,w,A):
         vx=Rp*np.cos(A)-R*np.sin(A)*w-a*np.cos(A)*w
         vy=Rp*np.sin(A)+R*np.cos(A)*w-a*np.sin(A)*w
@@ -44,7 +46,10 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
         B=(M*L)/(2*m)
         x=angulo(z,t)
         w=W(z,t)
+        #alfa=ALFA(z,t)
         f2= 2*a*g*(a*np.sin(x)-(B+y)*np.cos(x)) - 4*a*y*Y*w + 2*(A+(y**2))*(y*(w**2)-g*np.sin(x))/(3*(A+(y**2))-2*(a**2))
+        #f2= (g*((a+1)*np.sin(x)-(B+y)*np.cos(x)) - 2*y*Y*w + (A+a+(y**2))*(alfa)-y*w**2)/(a-(3/2))
+        
         return f2 #f2
 
     def rungeKuta4(f1,f2,a,b,y0,yp0,h):
@@ -124,7 +129,7 @@ def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     x2,y2=np.zeros(len(t)),np.zeros(len(t))
     xc2,yc2=np.zeros(len(t)),np.zeros(len(t))
     for i in range(0,len(t)): #nuevos valores para la posición, cuando se despega del limpiavidrios
-        if t[i] < tlim :
+        if t[i] < tlim and r[i]<=L and r[i]>=0 :
             x2[i]=x[i]
             y2[i]=y[i]
 

@@ -12,23 +12,23 @@ def theta(t,z):
         theta[i] = (np.pi/4)*(1-np.cos(z*t[i]))
     return theta
 
-def w(t,z):
+def W(t,z):
     w=np.zeros(len(t))
     for i in range (0,len(t)):
-        w[i] = (np.pi/4)*(np.sin(z*t[i]))
+        w[i] = (np.pi/4)*(np.sin(z*t[i]))*z
     return w
 
-def alfa(t,z):
+def ALFA(t,z):
     alfa=np.zeros(len(t))
     for i in range (0,len(t)):
-        alfa[i] = (np.pi/4)*(np.cos(z*t[i]))
+        alfa[i] = (np.pi/4)*(np.cos(z*t[i]))*z*z
     return alfa
-z=5
+z=2.5
 tf=2.5
 t=time(0,tf,0.01)
 theta=theta(t,z)
-w=w(t,z)
-alfa=alfa(t,z)
+w=W(t,z)
+alfa=ALFA(t,z)
 
 #for i in range(0,len(t)):
  #   print(t[i],theta[i],w[i],alfa)
@@ -43,3 +43,4 @@ plt.legend()
 
 
 plt.show()
+

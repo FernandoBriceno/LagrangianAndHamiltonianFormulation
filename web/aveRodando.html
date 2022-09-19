@@ -38,7 +38,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-z=5     #Grado de aceleración del limpiavidrios
+z=3     #Grado de aceleración del limpiavidrios
 a=0.3   #Radio de gordura del ave
 g=9.81
 M=0.2   #Masa del limpiavidrios
@@ -48,15 +48,15 @@ A0=0    #Ángulo inicial
 tlim = np.pi/(2*z)  #El tiempo en el que la velocidad angular comienza a disminuir
 h=0.001 #El paso del tiempo
 ti=0    #tiempo inicial
-tf=1.2  #tiempo final
+tf=1.5 #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
 
 def runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0):
     def angulo(z,t):
-        return (np.pi/4)*(1-np.cos(z*t)) #+ A0
+        return (np.pi/4)*(1-np.cos(z*t)) 
     def W(z,t):
-        return (np.pi/4)*np.sin(z*t)
+        return (np.pi/4)*np.sin(z*t)*z
     def vx_vy(t,R,Rp,w,A):
         vx=Rp*np.cos(A)-R*np.sin(A)*w-a*np.cos(A)*w
         vy=Rp*np.sin(A)+R*np.cos(A)*w-a*np.sin(A)*w
@@ -270,7 +270,7 @@ runProgram(z,a,g,M,m,L,A0,tlim,h,ti,tf,r0,rp0)
         
         <div class="code" >
             <py-repl>
-z=5     #Grado de aceleración del limpiavidrios
+z=3     #Grado de aceleración del limpiavidrios
 a=0.3   #Radio de gordura del ave
 g=9.81
 M=0.2   #Masa del limpiavidrios
@@ -280,7 +280,7 @@ A0=0    #Ángulo inicial
 tlim = np.pi/(2*z)  #El tiempo en el que la velocidad angular comienza a disminuir
 h=0.001 #El paso del tiempo
 ti=0    #tiempo inicial
-tf=1.2  #tiempo final
+tf=1.5  #tiempo final
 r0=3    #Valor inicial de la coordenada r
 rp0=0   #Valor inicial de la coordenada r'
             </py-repl>
