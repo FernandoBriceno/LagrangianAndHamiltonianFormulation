@@ -3,16 +3,15 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
-c=20
-
-g=9.81 #Aceleración de gravedad
-m=1   #Masa de los huevos
-L=1    #Longitud del péndulo
+c=20 #velocidad en ’x’
+g=9.81 #Aceleracin de gravedad
+m=1 #Masa de los huevos
+L=1 #Longitud del pndulo
 h=0.01 #El paso del tiempo
-ti=0    #tiempo inicial
-tf=1 #tiempo final
-A0=-6.2 #Valor inicial del ángulo
-Ap0=0   #Valor inicial de la velocidad angular
+ti=0 #tiempo inicial
+tf=0.5 #tiempo final
+A0=-np.pi-4 #Valor inicial del ngulo (-4 radianes a partir del punto ms bajo)
+Ap0=0 #Valor inicial de la velocidad angular
 
 
 def runProgram(m,L,h,ti,tf,A0,Ap0):
@@ -90,8 +89,8 @@ def runProgram(m,L,h,ti,tf,A0,Ap0):
         
         #limites del recuadro
         lim=5
-        plt.xlim(0,12)
-        plt.ylim(-3,3)
+        plt.xlim(0,6.5)
+        plt.ylim(-2,2)
     ani = animation.FuncAnimation(fig, actualizar, range(len(t)))
     fig
     plt.show()
