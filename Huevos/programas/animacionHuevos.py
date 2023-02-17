@@ -10,7 +10,7 @@ L=1 #Longitud del pndulo
 h=0.01 #El paso del tiempo
 ti=0 #tiempo inicial
 tf=0.5 #tiempo final
-A0=-np.pi-4 #Valor inicial del ngulo (-4 radianes a partir del punto ms bajo)
+A0=-1 #Valor inicial del ngulo (-4 radianes a partir del punto ms bajo)
 Ap0=0 #Valor inicial de la velocidad angular
 
 
